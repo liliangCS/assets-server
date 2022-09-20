@@ -1,4 +1,4 @@
-const { getRandomImgData, getAllImgData, updateImgData, removeImgData, getImgData } = require("../service/image-service")
+const { getRandomImgData, getAllImgData, updateImgData, removeImgData, getImgData, incrementImgData } = require("../service/image-service")
 
 class ImageController {
   // 获取随机图片
@@ -35,6 +35,15 @@ class ImageController {
   async getImg(ctx, next) {
     const { imageId } = ctx.request.params
     ctx.body = await getImgData(imageId)
+  }
+  // 新增图片
+  async incrementImg(ctx, next) {
+    const { name, imgUrl } = ctx.request.body
+    await incrementImgData(name, imgUrl)
+    ctx.body = {
+      status: 200,
+      msg: "添加成功"
+    }
   }
 }
 

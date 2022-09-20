@@ -31,6 +31,12 @@ class ImageService {
     const [res] = await connections.execute(statement, [imageId])
     return res[0]
   }
+  // 新增图片
+  async incrementImgData(name, imgUrl) {
+    const statement = "INSERT INTO image (name, imgUrl) VALUES (?, ?);"
+    const [res] = await connections.execute(statement, [name, imgUrl])
+    return res
+  }
 }
 
 module.exports = new ImageService()
