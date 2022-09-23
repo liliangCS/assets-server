@@ -1,4 +1,4 @@
-const { getRandomImgData, getAllImgData, updateImgData, removeImgData, getImgData, incrementImgData } = require("../service/image-service")
+const { getRandomImgData, getAllImgData, updateImgData, removeImgData, getImgData, incrementImgData, getDivideImgData } = require("../service/image-service")
 
 class ImageController {
   // 获取随机图片
@@ -44,6 +44,11 @@ class ImageController {
       status: 200,
       msg: "添加成功"
     }
+  }
+  // 分页获取图片
+  async getDivideImg(ctx, next) {
+    const { pageSize, pageIndex } = ctx.request.body
+    ctx.body = await getDivideImgData(pageSize, pageIndex)
   }
 }
 

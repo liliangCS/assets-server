@@ -37,6 +37,16 @@ class ImageService {
     const [res] = await connections.execute(statement, [name, imgUrl])
     return res
   }
+  // 分页获取图片
+  async getDivideImgData(pageSize, pageIndex) {
+    // 开始查询的地方
+    const start = (pageIndex - 1) * pageSize
+    // 查询多少条数据
+    const limit = pageSize
+    const statement = "SELECT * FROM image LIMIT ?, ?;"
+    const [res] = await connections.execute(statement, [start, limit])
+    return res
+  }
 }
 
 module.exports = new ImageService()

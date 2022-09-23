@@ -1,7 +1,7 @@
 const Router = require("koa-router")
 const router = new Router({ prefix: "/image" })
 
-const { getRandomImg, getAllImg, updateImg, removeImg, getImg, incrementImg } = require("../controller/image-controller")
+const { getRandomImg, getAllImg, updateImg, removeImg, getImg, incrementImg, getDivideImg } = require("../controller/image-controller")
 
 const verifyAuth = require("../middleware/verifyAuth")
 // 随机图片接口
@@ -16,4 +16,7 @@ router.delete("/:imageId", verifyAuth, removeImg)
 router.post("/", verifyAuth, incrementImg)
 // 获取单个图片
 router.get("/:imageId", getImg)
+// 分页获取图片
+router.post("/division", getDivideImg)
+
 module.exports = router
